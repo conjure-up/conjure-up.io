@@ -4,3 +4,37 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootswatch-sass/united/bootswatch";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+
+.splash {
+  background-image: url('/images/splash.png');
+  background-size: cover;
+  height: 300px;
+  margin-top: -21px;
+  .title {
+    font-weight: bolder;
+    font-size: 4rem;
+    color: #fefefe;
+    margin-top: 100px;
+    small {
+      font-size: 2rem;
+    }
+  }
+}
+
+.home {
+  margin-top: 55px;
+  padding-bottom: 55px;
+  border-bottom: 1px solid #cecece;
+  h1 {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.footer {
+  height: 300px;
+  padding-top: 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #333333;
+}

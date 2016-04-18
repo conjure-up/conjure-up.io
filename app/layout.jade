@@ -31,13 +31,16 @@ html
     .container-fluid
       .row
         .splash
-          .title
-            | conjure-up!
+          .container
+            .col-xs-12.col-md-12.col-lg-12
+              .title
+                | conjure-up!<br />
+                small Deploy your solutions with Juju.
     block content
     block footer
-      .container
+      .container-fluid.footer
         .row
-          .footer
-            .col-xs-12.col-md-12.col-lg-12
-              p &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.
+          .container
+              .col-xs-12.col-md-12.col-lg-12
+                p &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.
     script(src='/js/app.js')

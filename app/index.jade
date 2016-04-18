@@ -1,8 +1,36 @@
 extends layout
 block content
-  .container
-    .col-xs-12.col-md-12.col-lg-12
-      h1 What it do?
-      h1 Userz
-      h1 Devz
-      h1 poof
+  .container.home
+    .col-xs-12.col-md-6.col-lg-6
+      h1 Getting Started
+    .col-xs-12.col-md-6.col-lg-6
+      pre
+        code
+          | $ sudo apt install conjure-up
+          | $ conjure-up openstack
+  .container.home
+    .col-xs-12.col-md-4.col-lg-4
+      .panel.panel-default
+        .panel-heading
+          h2 Resources
+        ul.list-group
+          li.list-group-item
+            a(href="https://help.ubuntu.com/lts/clouddocs/installer/") Guides
+    .col-xs-12.col-md-4.col-lg-4
+      .panel.panel-default
+        .panel-heading
+          h2 Discussion
+        ul.list-group
+          li.list-group-item
+            a(href="https://askubuntu.com/questions/tagged/conjure-up") AskUbuntu
+    .col-xs-12.col-md-4.col-lg-4
+      .panel.panel-default
+        .panel-heading
+          h2 Project
+        ul.list-group
+          li.list-group-item
+            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up") GitHub
+          li.list-group-item
+            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up/issues") Issues
+          li.list-group-item
+            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up/wiki") Wiki
