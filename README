@@ -1,5 +1,6 @@
 ~ building
 
+$ npm i
 $ npm run build
 
 ~ previewing

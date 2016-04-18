@@ -7,11 +7,6 @@
     "build": "./build.sh",
     "www": "npm run build && http-server public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@ssh.astokes.org:conjure-up-io.git"
-  },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
