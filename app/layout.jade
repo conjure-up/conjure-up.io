@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='robots', content='index, follow')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    link(rel='icon', type='image/png', href='/images/favicon.png')
+    link(rel='stylesheet', href='/css/app.css')
+
+  body
+    block header
+      nav.navbar.navbar-inverse.navbar-static-top
+        .container
+          .navbar-header
+            button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#menu", aria-expanded="false")
+              span.sr-only Toggle Navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href="#")
+              img(src="/images/icon.svg", style="height: 40px; margin-top: -10px;")
+          #menu.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href="/") Home
+
+    .container-fluid
+      .row
+        .splash
+          .title
+            | conjure-up!
+    block content
+    block footer
+      .container
+        .row
+          .footer
+            .col-xs-12.col-md-12.col-lg-12
+              p &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.
+    script(src='/js/app.js')

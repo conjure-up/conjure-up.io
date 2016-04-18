@@ -1,0 +1,26 @@
+{
+  "name": "conjure-up.io",
+  "version": "1.0.0",
+  "description": "conjure-up.io",
+  "main": "index.js",
+  "scripts": {
+    "build": "./build.sh",
+    "www": "npm run build && http-server public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.astokes.org:conjure-up-io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "bootswatch-sass": "^3.2.0",
+    "font-awesome": "^4.6.1",
+    "http-server": "^0.9.0",
+    "jade": "^1.11.0",
+    "jquery": "^2.2.3",
+    "node-sass": "^3.4.2",
+    "uglifyjs": "^2.4.10"
+  }
+}
