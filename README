@@ -1,0 +1,11 @@
+~ building
+
+$ npm run build
+
+~ previewing
+
+$ npm run www
+
+~ deploying
+
+$ rsync -avz public/* user@host.com:/var/www/html/.
