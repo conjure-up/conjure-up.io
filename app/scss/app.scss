@@ -34,9 +34,11 @@
 .footer {
   height: 300px;
   padding-top: 20px;
-  font-size: 1rem;
   color: #ffffff;
   background-color: #333333;
+  .copyright {
+    font-size: 1rem;
+  }
 }
 
 .install-code {
