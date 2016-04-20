@@ -13,46 +13,52 @@ html
 
   body
     block header
-      nav.navbar.navbar-inverse.navbar-static-top
-        .container
+      nav.navbar.navbar-default.navbar-static-top
+        .container-fluid
           .navbar-header
             button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#menu", aria-expanded="false")
               span.sr-only Toggle Navigation
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href="#")
+            a.navbar-brand(href="/")
               img(src="/images/icon.svg", style="height: 40px; margin-top: -10px;")
           #menu.collapse.navbar-collapse
             ul.nav.navbar-nav
               li
-                a(href="/") Home
+                a(href="/get-started") Get started
+              li
+                a(href="/tour") Tour
+              li
+                a(href="/docs") Docs
 
-    .container-fluid
-      .row
-        .splash
-          .container
-            .col-xs-12.col-md-12.col-lg-12
-              .title
-                | conjure-up!<br />
-                small Deploy your solutions with Juju.
+    block splash
+      .container-fluid
+        .row
+          .splash
+            .container
+              .col-xs-12.col-md-12.col-lg-12
+                .title
+                  | conjure-up!<br />
+                  small Deployments so easy it's almost magical.
     block content
     block footer
       .container-fluid.footer
-        .row
-          .container
-              .col-xs-12.col-md-12.col-lg-12
-                p.copyright &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.
-              .col-xs-12.col-md-4.col-lg-4
-                h3 Products
-                a(href="https://jujucharms.com") Juju<br />
-                a(href="https://maas.io") Metal As A Service (MAAS)<br />
-                a(href="http://www.ubuntu.com/cloud/openstack/autopilot") OpenStack Autopilot
-              .col-xs-12.col-md-4.col-lg-4
-                h3 Community
-                a(href="http://planet.ubuntu.com") Planet Ubuntu<br />
-                a(href="http://discourse.ubuntu.com") Discourse<br />
-                a(href="https://askubuntu.com") AskUbuntu
-              .col-xs-12.col-md-4.col-lg-4
-
+        .container
+          .col-xs-12.col-md-4.col-lg-4
+            h4 CONJURE-UP
+            a(href="/") Home<br />
+            a(href="/get-started") Get started<br />
+            a(href="/tour") Tour
+          .col-xs-12.col-md-4.col-lg-4
+            h4 NEED HELP?
+            a(href="https://askubuntu.com") AskUbuntu<br />
+            a(href="http://webchat.freenode.net/?channels=ubuntu-server") Chat with conjure-up devs on freenode
+          .col-xs-12.col-md-4.col-lg-4
+            h4 CONTRIBUTE
+            a(href="https://github.com/ubuntu-solutions-engineering/conjure-up") GitHub
+          .col-xs-12.col-md-12.col-lg-12
+            p.copyright &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.<br />
+              a(href="http://www.ubuntu.com/legal") Legal Information - 
+              a(href="https://github.com/ubuntu-solutions-engineering/conjure-up/issues") Report a bug on this site
     script(src='/js/app.js')

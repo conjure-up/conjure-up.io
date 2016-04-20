@@ -1,0 +1,15 @@
+.tour {
+  .step {
+    height: 400px;
+    .info {
+      @include vertical-align();
+    }
+  }
+  h2.step_header {
+    font-weight: bolder;
+    line-height: 55px;
+    color: #888;
+    font-size: 18px;
+    margin: 0;
+  }
+}

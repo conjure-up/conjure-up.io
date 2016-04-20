@@ -1,12 +1,13 @@
 extends layout
 block content
   .container.home
-    .col-xs-12.col-md-6.col-lg-6
-      h1 Getting Started
-    .col-xs-12.col-md-6.col-lg-6
-      .well.install-code
-        | $ sudo apt install conjure-up<br />
-        | $ conjure-up <span class="element"></span>
+    .col-xs-12.col-md-6.col-md-offset-3
+      .center-block
+        .big-arrow
+          i.fa.fa-arrow-down.fa-5
+        .well.install-code
+          | $ sudo apt install conjure-up<br />
+          | $ conjure-up <span class="element"></span>
   .container.home
     .col-xs-12.col-md-6.col-lg-6
       a(href="/images/ss.png")
@@ -18,28 +19,6 @@ block content
       h3 Developers
       p Creating <strong>conjure-up</strong> packages are easy! They are created and packaged like any other Ubuntu deb package with a few conventions to follow.  A conjure-up package carries the ability to execute scripted tasks at different intervals of the deployment giving you more control over how you customize your solutions.
   .container.home
-    .col-xs-12.col-md-4.col-lg-4
-      .panel.panel-default
-        .panel-heading
-          h2 Resources
-        ul.list-group
-          li.list-group-item Creating conjure-up packages (coming soon)
-          li.list-group-item Automating deployments with processing scripts (coming soon)
-    .col-xs-12.col-md-4.col-lg-4
-      .panel.panel-default
-        .panel-heading
-          h2 Discussion
-        ul.list-group
-          li.list-group-item
-            a(href="https://askubuntu.com/questions/tagged/conjure-up") AskUbuntu
-    .col-xs-12.col-md-4.col-lg-4
-      .panel.panel-default
-        .panel-heading
-          h2 Project
-        ul.list-group
-          li.list-group-item
-            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up") GitHub
-          li.list-group-item
-            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up/issues") Issues
-          li.list-group-item
-            a(href="https://github.com/Ubuntu-Solutions-Engineering/conjure-up/wiki") Wiki
+    .col-xs-12.col-md-12.col-lg-12
+      h2 The latest CONJURE-UP news
+      a(href="https://insights.ubuntu.com/tag/conjure-up") More CONJURE-UP news from Ubuntu Insights

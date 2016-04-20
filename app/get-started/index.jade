@@ -1,0 +1,48 @@
+extends ../layout
+
+block splash
+
+block content
+  .container.get-started
+    .row
+      .col-md-12
+        h1.page-header <small>conjure-up</small> // Get started
+    .row
+      .col-md-6.step
+        .info
+          h2.text-center.step_number 1 Setup your hardware
+      .col-md-6.step
+        .info
+          p For localhost deployments utilizing Juju's LXD provider you will need at least a system with 8 CPUs and 12G RAM.
+    .row
+      hr
+      .col-md-6.step
+        .info
+          h2.text-center.step_number 2 Configure network bridge for LXD
+      .col-md-6.step
+        .info
+          p If you plan on using the LXD provider within Juju a properly configured network bridge is required. Skip if you plan on using any other public cloud.
+          .well
+            .install-code
+              | $ sudo dpkg-reconfigure -p lxd
+    .row
+      hr
+      .col-md-6.step
+        .info
+          h2.text-center.step_number 3 Install conjure-up
+      .col-md-6.step
+        .info
+          .well
+            .install-code
+              | $ sudo apt install conjure-up
+    .row
+      hr
+      .col-md-6.step
+        .info
+          h2.text-center.step_number 4 Conjure up a solution
+      .col-md-6.step
+        .info
+          .well
+            .install-code
+              | $ conjure-up openstack<br />
+              | $ conjure-up bigdata
