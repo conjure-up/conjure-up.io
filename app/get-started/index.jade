@@ -13,7 +13,12 @@ block content
           h2.text-center.step_number 1 Setup your hardware
       .col-md-6.step
         .info
-          p For localhost deployments utilizing Juju's LXD provider you will need at least a system with 8 CPUs and 8G RAM.
+          p For localhost deployments utilizing Juju's LXD provider the following setup is recommended:
+          ul
+            li 4x CPUs
+            li 16G RAM
+            li 32G Swap
+            li 250G SSD with a seperate block device for ZFS. Our recommendation for that device is 100G.
     .row
       hr
       .col-md-6.step
@@ -25,6 +30,7 @@ block content
           .well
             .install-code
               | $ sudo lxd init
+          p <span class="label label-info">Note</span> LXD will go through a series of questions including the setup of ZFS and a network bridge. Make sure to utilize your seperate block device for the ZFS pool here.
     .row
       hr
       .col-md-6.step
