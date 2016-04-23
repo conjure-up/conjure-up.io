@@ -23,10 +23,10 @@ block content
       hr
       .col-md-6.step
         .info
-          h2.text-center.step_number 2 Configure network bridge for LXD
+          h2.text-center.step_number 2 Configure LXD
       .col-md-6.step
         .info
-          p If you plan on using the LXD provider within Juju a properly configured network bridge is required. Skip if you plan on using any other public cloud.
+          p If you plan on using the LXD provider within Juju a properly configured network bridge is required and optionally(<strong>but highly recommended</strong>) configuring ZFS. Skip if you plan on using any other public cloud.
           .well
             .install-code
               | $ sudo lxd init
