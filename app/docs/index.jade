@@ -8,5 +8,30 @@ block content
       .col-md-12
         h1.page-header <small>conjure-up</small> // Documentation
     .row
-      .col-md-12
-        h4 Coming soon.
+      .col-xs-3.col-md-3.well
+        include _nav
+      .col-xs-9.col-md-9
+        h3 Welcome
+        p Documentation is broken up in to 2 sections, Users and Developers.
+        | Those looking for how to use <strong>conjure-up</strong> should browse
+        | the <strong>Users</strong> documentation, and those wanting to build
+        | <strong>conjure-up</strong> packages should browse the
+        | </strong>Developers</strong> section.
+
+        h3 What is conjure-up?
+        p
+          | <strong>conjure-up</strong> is a thin layer spanning a few different underlying
+          | technologies - <a href="https://jujucharms.com">Juju</a>, <a href="http://maas.io">MAAS</a>, and <a href="http://linuxcontainers.org">LXD</a>.
+        p
+          | Its primary goal is to simplify deployment. <strong>conjure-up</strong> is completely Juju bundle driven, meaning, we
+          | leave the application modeling up to you and the community. However, in the solutions like OpenStack and Bigdata we
+          | want to provide you with a streamlined, turnkey solution. In order to provide that streamlined approach, <strong>conjure-up</strong> makes
+          | use of processing scripts. These scripts are executed at 3 different times in the deployment, just after a Juju bootstrap,
+          | just before a Juju deploy, and right after a Juju deploy.
+        p
+          | Processing scripts give you the flexibility to alter LXD profiles in order to expose additional network interfaces to
+          | Neutron services, import images into Glance once the service is available, or notifying the Deployment status screen
+          | that your solution is ready and can be viewed at a specific URL.
+        p
+          | With these powerful concepts you can package up the solution that can then be provided to coworkers who can easily
+          | deploy your solutions in any Public Cloud, MAAS, or LXD.
