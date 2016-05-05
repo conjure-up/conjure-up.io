@@ -5,6 +5,8 @@ UGLIFY=node_modules/.bin/uglifyjs
 SCSS=node_modules/.bin/node-sass
 HTTPSERVE=node_modules/.bin/http-server
 
+CONJURE_SPELLS=$HOME/Projects/conjure-spells
+
 if [ -d public ]; then
   echo "cleaning public html"
   rm -rf public/**/*.html
@@ -15,7 +17,12 @@ mkdir -p public/{js,css,images,files}
 
 # render templates
 echo "render templates"
-$JADE -H app -o public
+$JADE app/docs -o public/docs
+$JADE app/get-started -o public/get-started
+$JADE app/tour -o public/tour
+$JADE app/spells --obj app/spells/registry.json -o public/spells
+$JADE app/index.jade -o public/
+
 
 # process vendor js
 echo "render js"

@@ -1,0 +1,19 @@
+extends ../layout
+
+block splash
+
+block content
+  .container.spells
+    .row
+      .col-md-12
+        h1.page-header <small>conjure-up</small> // Spells
+    .row
+      .col-xs-12.col-md-12
+        h3 Browse the Registry
+        table
+          th Spell
+          th Repo
+        each spell in spells:
+          tr
+            td
+              
