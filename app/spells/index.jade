@@ -9,11 +9,13 @@ block content
         h1.page-header <small>conjure-up</small> // Spells
     .row
       .col-xs-12.col-md-12
-        h3 Browse the Registry
-        table
-          th Spell
-          th Repo
-        each spell in spells:
-          tr
-            td
-              
+        table.table.table-bordered
+          thead
+            th Spell
+            th Run
+          each spell in spells
+            tr
+              td
+                = spell.name
+              td
+                pre $ conjure-up #{spell.name}
