@@ -13,13 +13,10 @@ technologies - <a href="https://jujucharms.com">Juju</a>, <a
 href="http://maas.io">MAAS</a>, and <a
 href="http://linuxcontainers.org">LXD</a>.
 
-Its primary goal is to simplify deployment. **conjure-up** is completely Juju
-bundle driven, meaning, we leave the application modeling up to you and the
-community. However, in the solutions like OpenStack and Bigdata we want to
-provide you with a streamlined, turnkey solution. In order to provide that
+Its primary goal is to simplify deployment. In order to provide a
 streamlined approach, **conjure-up** makes use of processing scripts. These
-scripts are executed at 3 different times in the deployment, just after a Juju
-bootstrap, just before a Juju deploy, and right after a Juju deploy.
+scripts are executed at different times in the deployment. This gives the spell
+author full control over customizing a full turnkey solution that suits their needs.
 
 Processing scripts give you the flexibility to alter LXD profiles in order to
 expose additional network interfaces to Neutron services, import images into
