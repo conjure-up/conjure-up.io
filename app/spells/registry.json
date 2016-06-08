@@ -1,1 +1,14 @@
-{"spells": [{"name": "kubernetes", "repo": "ubuntu-solutions-engineering/kubernetes", "fetcher": "github"}, {"name": "openstack-contrail", "repo": "ubuntu-solutions-engineering/openstack-contrail", "fetcher": "github"}]}
+{
+  "spells": [
+    {
+      "name": "observable kubernetes",
+      "repo": "juju-solutions/bundle-observable-kubernetes",
+      "fetcher": "github"
+    },
+    {
+      "name": "openstack-contrail",
+      "repo": "ubuntu-solutions-engineering/openstack-contrail",
+      "fetcher": "github"
+    }
+  ]
+}
