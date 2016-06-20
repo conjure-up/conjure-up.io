@@ -1,7 +1,6 @@
 $(function(){
 		$(".element").typed({
-			strings: ["bigdata^2000",
-                "openstack"],
+			strings: ["openstack^2000"],
 			typeSpeed: 0,
       startDelay: 2000
 		});
