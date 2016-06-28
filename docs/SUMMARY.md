@@ -8,4 +8,4 @@
   * [Uninstalling](users/index.md#uninstalling)
 * [Usage](users/usage.md)
   * [Summon Examples](users/usage.md#examples)
-* [Developer Guide](developers/index.md)
+  * [Running in Headless Mode](users/non-interactively.md)
