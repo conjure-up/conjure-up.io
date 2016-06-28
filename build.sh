@@ -3,26 +3,20 @@
 JADE=node_modules/.bin/jade
 UGLIFY=node_modules/.bin/uglifyjs
 SCSS=node_modules/.bin/node-sass
+GITBOOK=node_modules/.bin/gitbook
 HTTPSERVE=node_modules/.bin/http-server
-
-CONJURE_SPELLS=$HOME/Projects/conjure-spells
 
 if [ -d public ]; then
   echo "cleaning public html"
   rm -rf public/**/*.html
   rm -rf public/{js,css}
+  rm -rf public/docs
 fi
 
 mkdir -p public/{js,css,images,files}
 
-cp $CONJURE_SPELLS/registry.json app/spells/.
-
 # render templates
 echo "render templates"
-$JADE app/docs -o public/docs
-$JADE app/get-started -o public/get-started
-$JADE app/tour -o public/tour
-$JADE app/spells --obj app/spells/registry.json -o public/spells
 $JADE app/index.jade -o public/
 
 
@@ -41,7 +35,10 @@ cat app/scss/app.scss | $SCSS --output-style compressed > public/css/app.css
 # copy assets
 echo "copying assets"
 rsync -az app/images public
-rsync -az app/tour/*.png public/tour/.
-rsync -az app/spells/registry.json public/spells/.
 rsync -az node_modules/bootstrap-sass/assets/fonts/bootstrap/*.{ttf,woff,eot,svg,woff2} public/fonts
 rsync -az node_modules/font-awesome/fonts/*.{ttf,otf,eot,svg,woff,woff2} public/fonts
+
+
+echo "generating documentation"
+$GITBOOK build
+mv _book public/docs
