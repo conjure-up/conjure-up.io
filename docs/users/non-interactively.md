@@ -21,7 +21,7 @@ Localhost.
 To deploy OpenStack to a Localhost provider:
 
 ```
-$ conjure-up ~conjure/openstack-novalxd to localhost
+$ conjure-up ~spells/openstack-novalxd to localhost
 ```
 
 The key argument is **to** where this indicates which provider to deploy to.
