@@ -24,7 +24,6 @@ $JADE app/index.jade -o public/
 echo "render js"
 cat node_modules/jquery/dist/jquery.min.js \
     node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js \
-    node_modules/typed.js/dist/typed.min.js \
     > public/js/app.js
 $UGLIFY app/js/main.js >> public/js/app.js
 
