@@ -28,13 +28,20 @@ $ sudo lxd init
 > network bridge. Make sure to utilize your seperate block device for the ZFS
 > pool here.
 
+{% hint %}
+There may be times where <strong>conjure-up</strong> will error out due to not
+finding a suitable <strong>lxdbr0</strong> bridge device. Since LXD is socket activated you
+may need to run <strong><i>lxc finger</i></strong> and re-try <strong>conjure-up</strong> installation.
+{% endhint %}
+
+
 ## Installing conjure-up
 
 We are currently in a pre-release phase. In order to help test conjure-up we ask
 that you install from the PPA until otherwise noted:
 
 ```bash
-$ sudo apt-add-repository ppa:conjure/next
+$ sudo apt-add-repository ppa:conjure-up/next
 ```
 
 Juju is one of the underlying technologies used and is also currently in beta. Please use their PPA until otherwise noted:
