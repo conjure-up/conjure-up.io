@@ -21,7 +21,7 @@ Localhost.
 To deploy OpenStack to a Localhost provider:
 
 ```
-$ conjure-up ~spells/openstack-novalxd to localhost
+$ conjure-up openstack localhost
 ```
 
 The key argument is **to** where this indicates which provider to deploy to.
@@ -29,7 +29,7 @@ The key argument is **to** where this indicates which provider to deploy to.
 If we want to deploy to a cloud like AWS:
 
 ```
-$ conjure-up ~containers/observable-kubernetes to aws
+$ conjure-up observable-kubernetes aws
 ```
 
 > Keep in mind you'll need to have credentials defined, see

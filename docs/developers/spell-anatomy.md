@@ -7,12 +7,11 @@ familiar as we build on the existing Juju bundle specification.
 my-super-application>
    - bundle.yaml
    - README.md
-   - conjure/
-     - metadata.json
-     - steps/
-       - 00_deploy-done
-       - 00_pre-deploy
-       - 00_post-bootstrap
-       - step-01_my_first_step
-       - step-01_my_first_step.yaml
+   - metadata.yaml
+   - steps/
+     - 00_deploy-done
+     - 00_pre-deploy
+     - 00_post-bootstrap
+     - step-01_my_first_step
+     - step-01_my_first_step.yaml
 ```

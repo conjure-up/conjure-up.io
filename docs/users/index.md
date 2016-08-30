@@ -65,6 +65,12 @@ To deploy solutions such as OpenStack you will summon a spell:
 $ conjure-up openstack
 ```
 
+To see a list of all available spells run:
+
+```bash
+$ conjure-up
+```
+
 > Several remote locations are supported please see [Usage](usage.md) for further details.
 
 ## Uninstalling

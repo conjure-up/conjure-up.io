@@ -1,18 +1,8 @@
 # Usage
 
-**conjure-up** supports summoning spells from several remote repositories and from a local directory on your filesystem.
+**conjure-up** includes several spells in addition to supporting summoning spells from several remote repositories and from a local directory on your filesystem.
 
 ## Examples
-
-### Charmstore
-
-Deploy **conjure-up** enabled spells from jujucharms.com
-
-```
-$ conjure-up ~conjure/openstack-novalxd
-```
-
-This will pull the conjure-up enabled spell from https://jujucharms.com/u/conjure/openstack-novalxd
 
 ### GitHub/BitBucket
 
