@@ -1,4 +1,4 @@
-<!lang: EN
+<!--lang: EN
 # Developers
 -->
 
