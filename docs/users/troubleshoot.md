@@ -1,5 +1,1 @@
-<!-- lang: EN
 # Troubleshooting
--->
-
-# Dépannage
