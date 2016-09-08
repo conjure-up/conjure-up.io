@@ -1,7 +1,7 @@
 # Introduction
 
 **conjure-up** is a thin layer spanning a few different underlying
-technologies - [Juju]("https://jujucharms.com"), [MAAS](http://maas.io), and
+technologies - [Juju](https://jujucharms.com), [MAAS](http://maas.io), and
 [LXD](http://linuxcontainers.org).
 
 {% hint %}
