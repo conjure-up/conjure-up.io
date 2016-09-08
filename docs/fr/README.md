@@ -7,7 +7,7 @@ technologies - [Juju]("https://jujucharms.com"), [MAAS](http://maas.io), and
 -->
 
 **conjure-up** est une fine couche couvrant quelques différentes technologies 
-sous-jacentes - [Juju]("https://jujucharms.com"), [MAAS](http://maas.io), et
+sous-jacentes - [Juju](https://jujucharms.com), [MAAS](http://maas.io), et
 [LXD](http://linuxcontainers.org).
 
 <!-- lang: EN
