@@ -10,10 +10,10 @@ Not quite ready to push your spell to the charm registry? That's ok, simply push
 your spell to GitHub and conjure-up can deploy from there:
 
 ```
-$ conjure-up juju-solutions/bundle-observable-kubernetes
+$ conjure-up battlemidget/ghost
 ```
 
-This would pull from GitHub repo https://github.com/juju-solutions/bundle-observable-kubernetes
+This would pull from GitHub repo https://github.com/battlemidget/ghost
 
 ### Remote Web Server
 

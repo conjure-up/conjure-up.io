@@ -34,6 +34,10 @@ finding a suitable <strong>lxdbr0</strong> bridge device. Since LXD is socket ac
 may need to run <strong><i>lxc finger</i></strong> and re-try <strong>conjure-up</strong> installation.
 {% endhint %}
 
+{% hint %}
+For best results make sure to allocate at least a 20G ZFS pool size.
+{% endhint %}
+
 
 ## Installing conjure-up
 
@@ -64,6 +68,13 @@ To deploy solutions such as OpenStack you will summon a spell:
 ```bash
 $ conjure-up openstack
 ```
+
+{% hint %}
+<strong>OpenStack with NovaLXD</strong> is a special case where it is required
+for you to install the <strong>openstack</strong> package. Simply running
+<code>sudo apt install openstack</code> prior to running conjure-up will setup
+the necessary requirements for a successful deployment.
+{% endhint %}
 
 To see a list of all available spells run:
 
