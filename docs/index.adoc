@@ -1,3 +1,0 @@
-= conjure-up
-
-Check link:users[Users Documentation] or link:developers[Developer Documentation]

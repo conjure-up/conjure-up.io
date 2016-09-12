@@ -6,6 +6,7 @@ Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <ht
 :revdate: 2016-09-12
 :revremark: Initial Draft
 :source-highlighter: pygments
+:icons: font
 
 *conjure-up* is a thin layer spanning a few different underlying
 technologies - https://jujucharms.com[Juju], http://maas.io[MAAS],
@@ -113,9 +114,9 @@ To deploy solutions such as OpenStack you will summon a spell:
 $ conjure-up openstack
 ----
 
-NOTE: OpenStack with NovaLXD is a special case where it is
-required for you to install the openstack package. Simply running sudo
-apt install openstack prior to running conjure-up will setup the
+NOTE: **OpenStack with NovaLXD** is a special case where it is
+required for you to install the openstack package. Simply running `sudo
+apt install openstack` prior to running conjure-up will setup the
 necessary requirements for a successful deployment.
 
 To see a list of all available spells run:
@@ -167,5 +168,4 @@ $ juju kill-controller teddy
 ....
 
 include::usage.adoc[]
-
-== Troubleshoot
+include::troubleshoot.adoc[]

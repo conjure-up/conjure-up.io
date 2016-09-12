@@ -1,9 +1,0 @@
-{
-  "root": "./docs",
-  "plugins": ["disqus", "hints"],
-  "pluginsConfig": {
-    "disqus": {
-      "shortName": "conjureup"
-    }
-  }
-}

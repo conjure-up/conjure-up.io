@@ -1,4 +1,12 @@
-# Developers
+= conjure-up Developers Manual
+Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
+:toc: left
+:toclevels: 4
+:revnumber: 1.0
+:revdate: 2016-09-12
+:revremark: Initial Draft
+:source-highlighter: pygments
+:icons: font
 
 At the heart of **conjure-up** are spells. They consist of all the information
 required to deploy your applications and walk the user through getting started
@@ -15,5 +23,24 @@ steps that you define for a user to walkthrough. This allows you as a spell
 author to ensure that a user can learn about your application and at the end
 know exactly what to do next in order to make the most out of your application.
 
-It is recommended to learn the [anatomy of a spell](spell-anatomy.md)
-in order to get started building your spell!.
+It is recommended to learn the <<spell-anatomy>>
+in order to get started building your spell!
+
+[[spell-anatomy]]
+== Anatomy of a conjure-up spell
+
+We will start with the directory layout of a typical spell. Some of this will be
+familiar as we build on the existing Juju bundle specification.
+
+[source,bash]
+----
+my-super-application>
+   - bundle.yaml
+   - README.md
+   - metadata.yaml
+   - steps/
+     - 00_deploy-done
+     - 00_pre-deploy
+     - step-01_my_first_step
+     - step-01_my_first_step.yaml
+----

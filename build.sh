@@ -3,8 +3,17 @@
 JADE=node_modules/.bin/jade
 UGLIFY=node_modules/.bin/uglifyjs
 SCSS=node_modules/.bin/node-sass
-GITBOOK=node_modules/.bin/gitbook
 HTTPSERVE=node_modules/.bin/http-server
+
+if [ ! -e /usr/bin/asciidoctor ]; then
+  sudo apt install asciidoctor
+fi
+
+dpkg -l ruby-pygments.rb >/dev/null
+
+if [ $? -ne 0 ]; then
+  sudo apt install ruby-pygments.rb
+fi
 
 if [ -d public ]; then
   echo "cleaning public html"
@@ -18,7 +27,6 @@ mkdir -p public/{js,css,images,files}
 # render templates
 echo "render templates"
 $JADE app/index.jade -o public/
-
 
 # process vendor js
 echo "render js"
@@ -39,5 +47,8 @@ rsync -az node_modules/font-awesome/fonts/*.{ttf,otf,eot,svg,woff,woff2} public/
 
 
 echo "generating documentation"
-$GITBOOK build
-mv _book public/docs
+mkdir -p public/docs/en/users
+asciidoctor -b html docs/en/users/index.adoc -o public/docs/en/users/index.html
+
+mkdir -p public/docs/en/developers
+asciidoctor -b html docs/en/developers/index.adoc -o public/docs/en/developers/index.html

@@ -1,0 +1,11 @@
+[[troubleshoot]]
+== Troubleshoot
+
+=== Check logs
+
+**conjure-up** logs are written to **journald** by default. Viewing those logs can be done with:
+
+[source,bash]
+----
+$ journalctl |grep conjure-up
+----
