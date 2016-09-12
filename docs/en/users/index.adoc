@@ -2,9 +2,9 @@
 Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
 :toc: left
 :toclevels: 4
-:revnumber: 1.0
+:revnumber: 0.1
 :revdate: 2016-09-12
-:revremark: Initial Draft
+:revremark: WIP
 :source-highlighter: pygments
 :icons: font
 

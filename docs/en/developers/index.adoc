@@ -2,9 +2,9 @@
 Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
 :toc: left
 :toclevels: 4
-:revnumber: 1.0
+:revnumber: 0.1
 :revdate: 2016-09-12
-:revremark: Initial Draft
+:revremark: WIP
 :source-highlighter: pygments
 :icons: font
 
@@ -35,12 +35,55 @@ familiar as we build on the existing Juju bundle specification.
 [source,bash]
 ----
 my-super-application>
-   - bundle.yaml
+   - bundle.yaml <1>
    - README.md
-   - metadata.yaml
-   - steps/
+   - metadata.yaml <2>
+   - steps/ <3>
      - 00_deploy-done
      - 00_pre-deploy
      - step-01_my_first_step
      - step-01_my_first_step.yaml
 ----
+<1> More information on creating Juju https://jujucharms.com/docs/stable/charms-bundles[bundle files]
+<2> <<spell-metadata>>
+<3> Excutable scripts to be run prior to deployment, to check when a deployment is finished, and steps to be processed for configuring deployment. See <<spell-steps>> for more information.
+
+[[spell-metadata]]
+=== Spell Metadata
+
+The spell metadata contains properties that are useful for conjure-up to process
+certain aspects of a spell. Available properties are as follows:
+
+friendly-name:: This is used during the spell selection within conjure-up.
+cloud-whitelist:: A list of Public clouds available for a spell.
+cloud-blacklist:: A list of Public clouds that are known to not work with a spell.
+packages:: Additional `apt` packages required for spell.
+options-whitelist:: Additional charm options to be exposed for editing within conjure-up.
+
+.metadata.yaml example
+[source,yaml]
+----
+cloud-whitelist:
+- localhost
+friendly-name: OpenStack with NovaLXD
+options-whitelist:
+  keystone:
+  - admin-password
+  lxd:
+  - block-devices
+  mysql:
+  - max-connections
+  neutron-gateway:
+  - ext-port
+  nova-compute:
+  - virt-type
+----
+
+[[spell-steps]]
+=== Steps
+
+During a deployment, **conjure-up** will always check for and run a predefined set of scripts:
+
+00_pre-deploy:: This script contains necessary instructions for configuring a system prior to a deployment.
+00_deploy-done:: This script will contain instructions for verifying that deployment has finished and is ready for its next steps.
+step-##_a_step:: This is an alpha numerical script that will be executed in order to perform any actions necessary to provide a turn key and usuable deployment.
