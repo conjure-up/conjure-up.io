@@ -1,0 +1,171 @@
+= conjure-up User Manual
+Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
+:toc: left
+:toclevels: 4
+:revnumber: 1.0
+:revdate: 2016-09-12
+:revremark: Initial Draft
+:source-highlighter: pygments
+
+*conjure-up* is a thin layer spanning a few different underlying
+technologies - https://jujucharms.com[Juju], http://maas.io[MAAS],
+and http://linuxcontainers.org[LXD].
+
+*conjure-up* provides you with a streamlined, turnkey solution. In order
+to provide that streamlined approach, *conjure-up* makes use of
+processing scripts. These scripts are executed at 3 different times in
+the deployment, just after a Juju bootstrap, just before a Juju deploy,
+and right after a Juju deploy.
+
+Processing scripts give you the flexibility to alter LXD profiles in
+order to expose additional network interfaces to Neutron services,
+import images into Glance once the service is available, or notifying
+the Deployment status screen that your solution is ready and can be
+viewed at a specific URL.
+
+With these powerful concepts you can package up the solution that can
+then be provided to coworkers who can easily deploy your solutions in
+any Public Cloud, MAAS, or LXD.
+
+
+[[getting-started]]
+== Getting Started
+
+[[hardware-requirements]]
+=== Hardware Requirements
+
+[[public-cloud]]
+==== Public Cloud
+
+For *Public Cloud* deployments hardware requirements(__constraints__)
+are handled by the Spell authors and will automatically be allocated
+during deploy.
+
+[[localhost]]
+==== Localhost
+
+For *localhost* deployments the following setup is recommended:
+
+* 2 cores
+* 16G RAM
+* 32G Swap
+* 250G SSD with a seperate block device for ZFS. Our recommendation for
+that device is 100G.
+
+[[configure-lxdzfs]]
+=== Configure LXD/ZFS
+
+If you plan on using the *localhost* provider a properly configured
+network bridge is required and optionally(**but highly recommended**)
+configuring ZFS. Skip if you plan on using any other public cloud.
+
+[source,bash]
+----
+$ sudo lxd init
+----
+
+LXD will go through a series of questions including the setup of ZFS and
+a network bridge. Make sure to utilize your seperate block device for
+the ZFS pool here.
+
+There may be times where conjure-up will error out due to
+not finding a suitable lxdbr0 bridge device. Since LXD is socket
+activated you may need to run `lxc finger` and re-try conjure-up
+installation.
+
+TIP: For best results make sure to allocate at least a 20G ZFS
+pool size.
+
+[[installing-conjure-up]]
+=== Installing conjure-up
+
+We are currently in a pre-release phase. In order to help test
+conjure-up we ask that you install from the PPA until otherwise noted:
+
+[source,bash]
+----
+$ sudo apt-add-repository ppa:conjure-up/next
+----
+
+Juju is one of the underlying technologies used and is also currently in
+beta. Please use their PPA until otherwise noted:
+
+[source,bash]
+----
+$ sudo apt-add-repository ppa:juju/devel
+----
+
+Finally, update your apt cache and install necessary packages:
+
+[source,bash]
+----
+$ sudo apt update
+$ sudo apt install conjure-up
+----
+
+[[summon-a-spell]]
+=== Summon a Spell
+
+To deploy solutions such as OpenStack you will summon a spell:
+
+[source,bash]
+----
+$ conjure-up openstack
+----
+
+NOTE: OpenStack with NovaLXD is a special case where it is
+required for you to install the openstack package. Simply running sudo
+apt install openstack prior to running conjure-up will setup the
+necessary requirements for a successful deployment.
+
+To see a list of all available spells run:
+
+[source,bash]
+----
+$ conjure-up
+----
+
+****
+NOTE: Several remote locations are supported please see <<usage>>
+for further details.
+****
+
+[[uninstalling]]
+=== Uninstalling
+
+*conjure-up* uses Juju under the hood and to remove a deployment
+requires the use of `juju help commands`.
+
+****
+NOTE: You'll need to be familiar with Juju
+https://jujucharms.com/docs/devel/controllers[controllers] and
+https://jujucharms.com/docs/devel/models[models]
+****
+
+The basics of removing a deployed spell are as follows:
+
+[source,bash]
+....
+# Deploy openstack
+$ conjure-up openstack
+
+# List Juju information
+$ juju controllers
+CONTROLLER  MODEL    USER         CLOUD/REGION
+teddy*      default  admin@local  localhost/localhost
+
+$ juju models
+MODEL       OWNER        STATUS     LAST CONNECTION
+controller  admin@local  available  never connected
+default*    admin@local  available  just now
+
+# Remove the default model is houses our OpenStack deployment
+$ juju destroy-model default
+
+# Or destroy the entire environment and start over
+$ juju kill-controller teddy
+....
+
+include::usage.adoc[]
+
+== Troubleshoot
