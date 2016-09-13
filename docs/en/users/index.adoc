@@ -114,11 +114,6 @@ To deploy solutions such as OpenStack you will summon a spell:
 $ conjure-up openstack
 ----
 
-NOTE: **OpenStack with NovaLXD** is a special case where it is
-required for you to install the openstack package. Simply running `sudo
-apt install openstack` prior to running conjure-up will setup the
-necessary requirements for a successful deployment.
-
 To see a list of all available spells run:
 
 [source,bash]
