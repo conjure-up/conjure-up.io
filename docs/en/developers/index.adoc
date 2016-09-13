@@ -2,7 +2,7 @@
 Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
 :toc: left
 :toclevels: 4
-:revnumber: 0.1
+:revnumber: 2.0.1~beta1
 :revdate: 2016-09-12
 :revremark: WIP
 :source-highlighter: pygments
@@ -84,6 +84,221 @@ options-whitelist:
 
 During a deployment, **conjure-up** will always check for and run a predefined set of scripts:
 
-00_pre-deploy:: This script contains necessary instructions for configuring a system prior to a deployment.
-00_deploy-done:: This script will contain instructions for verifying that deployment has finished and is ready for its next steps.
+00_pre-deploy:: This script contains necessary instructions for configuring a system prior to a deployment (<<pre-deploy>>).
+00_deploy-done:: This script will contain instructions for verifying that deployment has finished and is ready for its next steps (<<deploy-done>>).
 step-##_a_step:: This is an alpha numerical script that will be executed in order to perform any actions necessary to provide a turn key and usuable deployment.
+
+[[pre-deploy]]
+==== 00_pre-deploy
+
+In some cases, like OpenStack with NovaLXD modifications need to be made to the
+LXD container profile to allow for certain kernel modules and networking to be
+enabled. This needs to happen prior to any applications being deployed in the container.
+
+.An example of 00_pre-deploy for OpenStack with NovaLXD
+[source, python]
+----
+#!/usr/bin/env python3
+
+import os
+import time
+from subprocess import run, PIPE, CalledProcessError
+from conjureup.hooklib.writer import success, error, log
+
+SCRIPTPATH = os.path.dirname(os.path.abspath(__file__))
+
+
+provider_type = os.environ.get('JUJU_PROVIDERTYPE', None) <1>
+
+if provider_type == "lxd": <2>
+    log.debug("Running pre-deploy for OpenStack")
+    # Give LXD enough time to learn about the profile
+    time.sleep(5)
+    try:
+        profilename = run('juju switch | cut -d/ -f2',
+                          shell=True,
+                          stdout=PIPE,
+                          stderr=PIPE)
+        profilename = profilename.stdout.decode().strip()
+    except CalledProcessError as e:
+        error(e)
+
+    log.debug("Processing lxd profile: {}".format(profilename))
+
+    try:
+        profile_edit = run(
+            'sed "s/##MODEL##/{profile}/" '
+            '{scriptpath}/lxd-profile.yaml | '
+            'lxc profile edit "juju-{profile}"'.format(
+                profile=profilename,
+                scriptpath=SCRIPTPATH),
+            shell=True,
+            stdout=PIPE,
+            stderr=PIPE) <3>
+    except CalledProcessError as e:
+        error(e)
+
+    if profile_edit.returncode > 0:
+        error(profile_edit.stderr)
+
+success("Successful pre-deploy.") <4>
+----
+<1> Is exposed as an environment variable to check the type of public cloud this script is running in.
+<2> Since we are doing this on a container it makes sense to only work with the **LXD** type.
+<3> This performs an inplace update of the LXD profile. Due to the nature of LXD this profile will be available immediately even on containers that have already started.
+<4> Helper function part of the builtin hooklib for writing steps. This lets conjure-up know that this pre-deploy task has completed without error.
+
+[[deploy-done]]
+==== 00_deploy-done
+
+Before we can process any additional steps we need to wait for all the deployed applications to become in a **ready** state. Below demonstrates a couple of ways to check for an error of the unit or machine:
+
+.An example of 00_deploy-done for OpenStack with NovaLXD
+[source,python]
+----
+#!/usr/bin/env python3
+from conjureup.hooklib.writer import success, fail, error, log
+from conjureup.hooklib import juju
+
+log.debug("Running deploy-done for OpenStack installation.")
+agent_states = juju.agent_states() <1>
+
+errored_units = [(unit_name, message) for unit_name, state, message
+                 in agent_states if state == "error"] <2>
+if len(errored_units) > 0:
+    errs = "\n".join(["{}: {}".format(n, m) for n, m in errored_units])
+    error('Deployment errors:\n{}'.format(errs))
+
+machines = juju.machine_states()
+errored_machines = [(name, err) for name, status, err in machines
+                    if status == "error"] <3>
+if len(errored_machines) > 0:
+    errs = "\n".join(["{}: {}".format(n, m) for n, m in errored_machines])
+    error("Machine creation errors:\n{}".format(errs))
+
+if len(agent_states) == 0:
+    fail('Applications are still deploying') <4>
+
+if all([state == 'active' for _, state, _ in agent_states]):
+    success('Applications are ready') <5>
+
+fail('Applications not ready yet')
+----
+<1> Part of the conjure-up hooklib for grabbing the status output from Juju. This is similar to running `juju status --format yaml`
+<2> Check for any Application units that have errored and trigger a failure in conjure-up to be seen by the user.
+<3> Check for any Machines that have errored and trigger a failure in conjure-up to be seen by the user.
+<4> This triggers a non fatal failure which lets conjure-up know that at least 1 or more applications are still pending.
+<5> All applications, units, and machines are in a successful state and which triggers conjure-up to move on to the <<post-processing-steps>>
+
+[[post-processing-steps]]
+==== Post processing
+
+There are 2 sections to post processing. The first section is the **step
+metadata**, this metadata provides conjure-up some context about what to display
+to the user for configuration and how to pass that information to the processing
+script.
+
+Steps are created alpha numerically and have 2 files associated. The first file
+being the step script named **step-01_keypair**. The second file is the metadata
+for that step named **step-01_keypair.yaml**.
+
+The metadata for a step consists of:
+
+title:: A short title of the step
+description:: A summary of what this steps does
+viewable:: Boolean to indicate if this steps summary and actions are seen within conjure-up
+required:: Boolean to indicate that this step is a requirement and has to be run
+additional-input:: Additional configuration variables that can be changed by the user within conjure-up <<additional-input>>
+
+===== Additional Input
+
+This section of the step describes the configuration object and how it is to be
+displayed to the user within conjure-up and how a step would utilize the result
+from the user input.
+
+The additional input has the following properties:
+
+label:: Rendered label describing the input
+key:: The result of input is stored in this key which is exposed via environment variables
+type:: Type of input
+default:: Default value for input
+
+.A full example of step-01_keypair.yaml
+[source,yaml]
+----
+title: SSH
+description: |
+  Import SSH keypairs into OpenStack. This allows you to access the newly deployed instances via SSH with your current user. If you are not sure about the location of a ssh key leave it as is and we will create one automatically.
+viewable: True
+required: True
+additional-input:
+  - label: SSH public key path
+    key: SSHPUBLICKEY
+    type: text
+    default: ~/.ssh/id_rsa.pub
+----
+
+.An example the step script
+[source,python]
+----
+#!/usr/bin/env python3
+
+# Global imports
+import os
+import os.path as path
+from subprocess import run, DEVNULL, PIPE
+from conjureup.hooklib.writer import success, fail, log
+import utils
+
+SCRIPTPATH = path.dirname(path.abspath(__file__))
+NOVARC = path.join(SCRIPTPATH, 'novarc')
+
+
+def ssh_genkey(ssh_privkey):
+    """ Generates sshkey
+    """
+    cmd = "ssh-keygen -N '' -f {0}".format(ssh_privkey)
+    out = run(cmd, shell=True, stdout=DEVNULL, stderr=PIPE)
+    if out.returncode != 0:
+        fail("Unable to generate key: {0}".format(out.stderr.decode()))
+
+
+credentials = utils.parse_openstack_creds(NOVARC)
+
+ssh_pubkey = path.expanduser(os.environ.get(
+    'SSHPUBLICKEY',
+    path.expanduser('~/.ssh/id_rsa.pub'))) <1>
+ssh_privkey = path.join(path.expanduser('~/.ssh'),
+                        path.splitext(ssh_pubkey)[0])
+
+if not path.isfile(ssh_privkey):
+    log.debug("No ssh private key found, generating our own.")
+    ssh_genkey(ssh_privkey)
+
+log.debug("Checking for ssh public key: {}".format(ssh_pubkey))
+if path.isfile(ssh_pubkey):
+    cmd = ("openstack keypair show ubuntu-keypair")
+    ret = run(cmd, shell=True,
+              stdout=DEVNULL,
+              stderr=PIPE,
+              env=credentials)
+    if ret.returncode == 0:
+        success("SSH keypair already available to "
+                "you in your OpenStack cloud.")
+
+    cmd = ("openstack keypair create --public-key {} "
+           "ubuntu-keypair".format(ssh_pubkey))
+    ret = run(cmd, shell=True,
+              stdout=DEVNULL,
+              stderr=PIPE,
+              env=credentials)
+    if ret.returncode > 0:
+        fail("Unable to add public ssh key, maybe "
+             "ssh-keygen needs to be run")
+    success("SSH Keypair is now imported and accessible "
+            "when creating compute nodes.")
+
+fail("Could not find any ssh keys to import, please run "
+     "ssh-keygen in another terminal before re-executing this step.")
+----
+<1> This is the environment variable that was defined in the **key** section of **step-01_keypair.yaml**
