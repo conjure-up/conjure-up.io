@@ -9,3 +9,10 @@
 ----
 $ journalctl |grep conjure-up
 ----
+
+You can also increase the logging by enabling the **debug** flag:
+
+[source,bash]
+----
+$ conjure-up -d
+----

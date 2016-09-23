@@ -44,7 +44,7 @@ my-super-application>
      - step-01_my_first_step
      - step-01_my_first_step.yaml
 ----
-<1> More information on creating Juju https://jujucharms.com/docs/stable/charms-bundles[bundle files]
+<1> If this file exist in the spell directory it will be used, otherwise a **bundle-location** is required. More information on creating Juju https://jujucharms.com/docs/stable/charms-bundles[bundle files]
 <2> <<spell-metadata>>
 <3> Excutable scripts to be run prior to deployment, to check when a deployment is finished, and steps to be processed for configuring deployment. See <<spell-steps>> for more information.
 
@@ -57,8 +57,8 @@ certain aspects of a spell. Available properties are as follows:
 friendly-name:: This is used during the spell selection within conjure-up.
 cloud-whitelist:: A list of Public clouds available for a spell.
 cloud-blacklist:: A list of Public clouds that are known to not work with a spell.
-packages:: Additional `apt` packages required for spell.
 options-whitelist:: Additional charm options to be exposed for editing within conjure-up.
+bundle-location:: A URL of the location of a bundle.yaml, ie https://api.jujucharms.com/charmstore/v5/wiki-scalable/archive/bundle.yaml
 
 .metadata.yaml example
 [source,yaml]

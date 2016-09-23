@@ -65,7 +65,7 @@ to Localhost.
 To deploy OpenStack to a Localhost provider:
 
 ....
-$ conjure-up openstack localhost
+$ conjure-up openstack-novalxd localhost
 ....
 
 If we want to deploy to a cloud like AWS:
@@ -77,3 +77,39 @@ $ conjure-up observable-kubernetes aws
 NOTE: Keep in mind you'll need to have credentials defined, see
 https://jujucharms.com/docs/devel/credentials[Juju credentials] for more
 details.
+
+[[customize-headless-mode]]
+==== Customizing headless mode
+
+Post deployment actions are exposed to the environment via environment
+variables. Some actions may require you to input data depending on what is
+required. An example would be input the path of your public ssh key so that your
+OpenStack deployment can make those available to the compute nodes.
+
+To see what environment variables you can set prior to running a headless mode install, run the following:
+
+[source,bash]
+----
+$ conjure-up --show-env openstack-novalxd localhost
+Available environment variables:
+
++--------------+-------------------+---------------------------------------------------------+
+| ENV          | DEFAULT           |                                                         |
++--------------+-------------------+---------------------------------------------------------+
+| SSHPUBLICKEY | ~/.ssh/id_rsa.pub | Import SSH keypairs into OpenStack. This allows you to  |
+|              |                   | access the newly deployed instances via SSH with your   |
+|              |                   | current user. If you are not sure about the location of |
+|              |                   | a ssh key leave it as is and we will create one         |
+|              |                   | automatically.                                          |
++--------------+-------------------+---------------------------------------------------------+
+
+See http://conjure-up.io/docs/en/users/#running-in-headless-mode for more
+information on using these variables to further customize your deployment.
+----
+
+In order to change it from it's default of **~/.ssh/id_rsa.pub** you would simply do:
+
+[source,bash]
+----
+$ SSHPUBLICKEY=/home/bob/my-ssh-key.pub conjure-up openstack-novalxd localhost
+----
