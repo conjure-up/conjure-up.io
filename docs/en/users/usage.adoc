@@ -71,7 +71,7 @@ $ conjure-up openstack-novalxd localhost
 If we want to deploy to a cloud like AWS:
 
 ....
-$ conjure-up observable-kubernetes aws
+$ conjure-up canonical-kubernetes aws
 ....
 
 NOTE: Keep in mind you'll need to have credentials defined, see
