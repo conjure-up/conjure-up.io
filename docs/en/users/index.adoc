@@ -7,6 +7,7 @@ Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <ht
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
+:imagesdir: /images/walkthrough
 
 *conjure-up* is a thin layer spanning a few different underlying
 technologies - https://jujucharms.com[Juju], http://maas.io[MAAS],
@@ -162,5 +163,6 @@ $ juju destroy-model default
 $ juju kill-controller teddy
 ....
 
+include::walkthrough.adoc[]
 include::usage.adoc[]
 include::troubleshoot.adoc[]
