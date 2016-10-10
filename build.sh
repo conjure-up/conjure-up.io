@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JADE=node_modules/.bin/jade
+PUG=node_modules/.bin/pug
 UGLIFY=node_modules/.bin/uglifyjs
 SCSS=node_modules/.bin/node-sass
 HTTPSERVE=node_modules/.bin/http-server
@@ -26,7 +26,7 @@ mkdir -p public/{js,css,images,files}
 
 # render templates
 echo "render templates"
-$JADE app/index.jade -o public/
+$PUG app/index.pug -o public/
 
 # process vendor js
 echo "render js"
