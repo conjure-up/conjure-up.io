@@ -47,3 +47,20 @@ LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
 ----
+
+=== OpenStack with NovaLXD  (To many open files)
+
+There are times where a deployment of OpenStack on a single system will cause an
+error of "To many open files" and normally shows up at the end of a deployment
+when you've reached 14-15 running containers. There is a bug to address this
+https://bugs.launchpad.net/juju-release-tools/+bug/1631038. In the meantime, edit **/etc/sysctl.conf** with this
+workaround:
+
+
+[source,bash]
+----
+fs.inotify.max_user_watches = 524288
+fs.inotify.max_user_instances = 256
+----
+
+Make sure to run `sysctl -p` to update those settings.
