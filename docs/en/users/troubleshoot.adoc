@@ -48,7 +48,11 @@ LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
 ----
 
-=== OpenStack with NovaLXD  (To many open files)
+== Common Spell Problems
+
+=== OpenStack with NovaLXD
+
+==== (To many open files)
 
 There are times where a deployment of OpenStack on a single system will cause an
 error of "To many open files" and normally shows up at the end of a deployment
@@ -64,3 +68,13 @@ fs.inotify.max_user_instances = 256
 ----
 
 Make sure to run `sysctl -p` to update those settings. Also see more information on https://github.com/lxc/lxd/blob/master/doc/production-setup.md[scaling LXD].
+
+==== RabbitMQ Server: hook failed: "amqp-relation-changed" for _service_:amqp
+
+This looks to be a race condition with Juju, LXD, cloud-init during the setting
+of hostnames.
+https://github.com/conjure-up/conjure-up/issues/489#issuecomment-253112250[This
+bug] goes over the current state of the issue and links launchpad bugs for
+tracking any fixes. A possible workaround is to deploy **RabbitMQ Server** first
+from the Application list within **conjure-up** then deploy the remaining
+applications after that.
