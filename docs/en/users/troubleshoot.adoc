@@ -52,7 +52,7 @@ LC_ALL=
 
 === OpenStack with NovaLXD
 
-==== (To many open files)
+==== To many open files
 
 There are times where a deployment of OpenStack on a single system will cause an
 error of "To many open files" and normally shows up at the end of a deployment
@@ -78,3 +78,13 @@ bug] goes over the current state of the issue and links launchpad bugs for
 tracking any fixes. A possible workaround is to deploy **RabbitMQ Server** first
 from the Application list within **conjure-up** then deploy the remaining
 applications after that.
+
+=== OpenStack Base for MAAS
+
+==== config-changed error for neutron-gateway
+
+This error can happen if you've not set your **bridge-mappings** and
+**data-port** during the <<application-list>> portion of the deployment.
+
+Please see https://jujucharms.com/neutron-gateway/[the Neutron Gateway charm
+documentation] under **Port Configuration** for more information.

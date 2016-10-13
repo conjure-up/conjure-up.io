@@ -15,6 +15,7 @@ Next, a list of publicly supported clouds will be presented.
 
 image::canonical-kubernetes/cloud-selection.png[caption="Figure 2: ", title="Cloud selection"]
 
+[[application-list]]
 === Application List
 
 Once a cloud is selected you will be presented with a list of applications that
