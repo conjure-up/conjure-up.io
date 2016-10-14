@@ -75,7 +75,7 @@ $ conjure-up canonical-kubernetes aws
 ....
 
 NOTE: Keep in mind you'll need to have credentials defined, see
-https://jujucharms.com/docs/devel/credentials[Juju credentials] for more
+https://jujucharms.com/docs/stable/credentials[Juju credentials] for more
 details.
 
 [[customize-headless-mode]]
