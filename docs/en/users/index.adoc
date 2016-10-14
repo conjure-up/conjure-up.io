@@ -1,9 +1,9 @@
 = conjure-up User Manual
-Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mmcc]>
+Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mikemccracken]>
 :toc: left
 :toclevels: 4
-:revnumber: 2.0.1
-:revdate: 2016-10-13
+:revnumber: 2.0.2
+:revdate: 2016-10-20
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
@@ -83,20 +83,17 @@ pool size.
 [[installing-conjure-up]]
 === Installing conjure-up
 
-We are currently in a pre-release phase. In order to help test
-conjure-up we ask that you install from the PPA until otherwise noted:
-
 [source,bash]
 ----
 $ sudo apt-add-repository ppa:conjure-up/next
 ----
 
-Juju is one of the underlying technologies used and is also currently in
-beta. Please use their PPA until otherwise noted:
+Juju is one of the underlying technologies used. Please use their PPA until
+otherwise noted:
 
 [source,bash]
 ----
-$ sudo apt-add-repository ppa:juju/devel
+$ sudo apt-add-repository ppa:juju/stable
 ----
 
 Finally, update your apt cache and install necessary packages:
