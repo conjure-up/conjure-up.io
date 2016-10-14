@@ -10,8 +10,13 @@ block content
             h4 Available on Ubuntu Xenial (16.04) and above
           .panel-body
             .install-code
+              | $ sudo apt-add-repository ppa:juju/stable<br />
+              | $ sudo apt-add-repository ppa:conjure-up/next<br />
+              | $ sudo apt update<br />
               | $ sudo apt install conjure-up<br />
               | $ conjure-up
+          .panel-footer
+            | Note these PPA's are temporary while both Juju and conjure-up go through the <a href="https://wiki.ubuntu.com/StableReleaseUpdates" target="_blank">SRU</a> process.
   .container.home
     .col-xs-12.col-md-6.col-lg-6
       a(href="/images/ss.png")
