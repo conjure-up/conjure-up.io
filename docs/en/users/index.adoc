@@ -8,6 +8,8 @@ Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <ht
 :source-highlighter: pygments
 :icons: font
 :imagesdir: /images/walkthrough
+:experimental:
+
 
 *conjure-up* is a thin layer spanning a few different underlying
 technologies - https://jujucharms.com[Juju], http://maas.io[MAAS],

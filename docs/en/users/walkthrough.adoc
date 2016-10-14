@@ -7,6 +7,8 @@ Follow through our screenshot walkthrough of deploying **The Canonical Distribut
 
 Initially, you will be provided with a list of available spells that can be deployed. For this walkthrough we will select **Canonical Kubernetes**.
 
+NOTE: Once a Spell is selected you can view its **README** at any time by pressing kbd:[R]
+
 image::canonical-kubernetes/spell-selection.png[caption="Figure 1: ", title="Spell selection"]
 
 === Cloud Selection
@@ -75,3 +77,6 @@ how to access and use your **kubectl** binary along with the Kubernetes
 such as Filebeat and Topbeat.
 
 image::canonical-kubernetes/summary.png[caption="Figure 8: ", title="Summary"]
+
+Pressing kbd:[Q] will return you back to the shell with your deployment left
+intact.
