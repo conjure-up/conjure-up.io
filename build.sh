@@ -44,6 +44,7 @@ echo "copying assets"
 rsync -az app/images public
 rsync -az node_modules/bootstrap-sass/assets/fonts/bootstrap/*.{ttf,woff,eot,svg,woff2} public/fonts
 rsync -az node_modules/font-awesome/fonts/*.{ttf,otf,eot,svg,woff,woff2} public/fonts
+rsync -az app/setup.sh public
 
 
 echo "generating documentation"
