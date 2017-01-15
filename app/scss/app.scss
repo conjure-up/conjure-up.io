@@ -17,7 +17,7 @@
 }
 
 .splash {
-  background-image: url('/images/splash.jpg');
+  background-image: url('/images/splash_2400.jpg');
   background-size: cover;
   background-position: 0% 50%;
   height: 450px;
@@ -32,18 +32,19 @@
       font-size: 2rem;
     }
   }
+  .install-box {
+    margin-top: 125px;
+  }
 }
 
 .home {
   .big-arrow {
-    margin-top: -30px;
-    padding-bottom: 20px;
     text-align: center;
     font-size: 36px;
   }
   margin-top: 55px;
   padding-bottom: 25px;
-  border-bottom: 1px solid #cecece;
+  border-bottom: 1px solid #eee;
   h1 {
     margin: 0;
     text-align: center;
@@ -82,7 +83,12 @@
 
 .install-code {
   font-family: 'Ubuntu Mono';
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.example-code {
+  font-family: 'Ubuntu Mono';
+  font-size: small;
 }
 
 .typed-cursor{

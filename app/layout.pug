@@ -26,7 +26,7 @@ html
           #menu.collapse.navbar-collapse
             ul.nav.navbar-nav
               li
-                a(href="http://blog.conjure-up.io") Blog
+                a(href="/blog") Blog
               li
                 a(href="/docs/en/users/#getting-started") Get started
               li
@@ -38,10 +38,16 @@ html
         .row
           .splash
             .container
-              .col-xs-12.col-md-12.col-lg-12
+              .col-xs-12.col-md-6.col-lg-6
                 .title
                   | conjure-up!<br />
                   small Deployments so easy it's almost magical.
+              .col-xs-12.col-md-6.col-lg-6
+                .install-box
+                  pre.code.install-code
+                    | $ sudo snap install conjure-up --classic
+                    | $ conjure-up
+
     block content
     block footer
       .container-fluid.footer
@@ -49,19 +55,19 @@ html
           .col-xs-12.col-md-4.col-lg-4
             h4 CONJURE-UP
             a(href="/") Home<br />
-            a(href="http://blog.conjure-up.io") Blog<br />
+            a(href="/blog") Blog<br />
             a(href="/docs/en/users/#getting-started") Getting Started<br />
             a(href="/docs/en/users") User Manual<br />
             a(href="/docs/en/developers") Developer Manual
           .col-xs-12.col-md-4.col-lg-4
             h4 NEED HELP?
             a(href="https://askubuntu.com/questions/tagged/conjure-up") AskUbuntu<br />
-            a(href="http://webchat.freenode.net/?channels=ubuntu-server") Chat with conjure-up devs on freenode
+            a(href="http://webchat.freenode.net/?channels=juju") Chat with conjure-up devs on freenode
           .col-xs-12.col-md-4.col-lg-4
             h4 CONTRIBUTE
             a(href="https://github.com/conjure-up/conjure-up") GitHub
           .col-xs-12.col-md-12.col-lg-12
-            p.copyright &copy; 2015-2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.<br />
+            p.copyright &copy; 2015-2017 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.<br />
               a(href="http://www.ubuntu.com/legal") Legal Information -
               a(href="https://github.com/conjure-up/conjure-up/issues") Report a bug on this site
     script(src='/js/app.js')

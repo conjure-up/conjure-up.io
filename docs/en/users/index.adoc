@@ -80,6 +80,9 @@ installation.
 TIP: For best results make sure to allocate at least a 100G ZFS
 pool size.
 
+TIP: If the installation fails please check that LXD is not enabled
+with IPv6 as that is currently not supported.
+
 [[installing-conjure-up]]
 === Installing conjure-up
 

@@ -1,21 +1,14 @@
 extends layout
 block content
   .container.home
-    .col-xs-12.col-md-6.col-md-offset-3
-      .center-block
-        .big-arrow
-          i.fa.fa-arrow-down.fa-5
-        .panel.panel-default
-          .panel-heading.text-center
-            h4 Install for Ubuntu Xenial (16.04) and above
-          .panel-body
-            pre.code.install-code
-              | $ sudo snap install conjure-up --classic
-              | $ conjure-up
-  .container.home
     .col-xs-12.col-md-6.col-lg-6
       a(href="/images/ss.png")
         img(src="/images/ss.png", class="img-thumbnail img-responsive")
     .col-xs-12.col-md-6.col-lg-6
       p.lead Conjure-up is a power tool for getting started with big software.
       p Conjure-up lets you summon up a big-software stack as a “spell” - a model of the stack, combined with extra know-how to get you from an installed stack to a fully usable one. Start using your big software instead of learning how to deploy it.
+      h3 Popular spells
+      p.well.example-code
+        | $ conjure-up kubernetes
+      p.well.example-code
+        | $ conjure-up openstack
