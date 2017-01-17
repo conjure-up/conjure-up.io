@@ -83,9 +83,15 @@
 
 .install-code {
   font-family: 'Ubuntu Mono';
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: bolder;
+  color: #e1e1e1;
+  background-color: #333;
+  border-color: #2c001e;
+  border-radius: 0 0 5px 5px;
   h4 {
     color: #E95420;
+    background-color: #fff;
   }
 }
 

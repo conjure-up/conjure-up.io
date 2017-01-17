@@ -38,15 +38,17 @@ html
         .row
           .splash
             .container
-              .col-xs-12.col-md-6.col-lg-6
+              .col-xs-12.col-md-12.col-lg-12
                 .title
                   | conjure-up!<br />
                   small Deployments so easy it's almost magical.
-              .col-xs-12.col-md-6.col-lg-6
-                .install-box
-                  pre.code.install-code
-                    | $ sudo snap install conjure-up --classic
-                    | $ conjure-up
+        .row
+          .container
+            .col-xs-12.col-md-12.col-lg-12
+              .install-box
+                pre.install-code
+                  | $ sudo snap install conjure-up --classic
+                  | $ conjure-up
 
     block content
     block footer

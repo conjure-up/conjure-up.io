@@ -2,8 +2,8 @@
 Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mikemccracken]>
 :toc: left
 :toclevels: 4
-:revnumber: 2.0.3
-:revdate: 2016-10-24
+:revnumber: 2.1.0
+:revdate: 2017-01-17
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
@@ -88,24 +88,9 @@ with IPv6 as that is currently not supported.
 
 [source,bash]
 ----
-$ sudo apt-add-repository ppa:conjure-up/next
+$ sudo snap install conjure-up --classic
 ----
 
-Juju is one of the underlying technologies used. Please use their PPA until
-otherwise noted:
-
-[source,bash]
-----
-$ sudo apt-add-repository ppa:juju/stable
-----
-
-Finally, update your apt cache and install necessary packages:
-
-[source,bash]
-----
-$ sudo apt update
-$ sudo apt install conjure-up
-----
 
 [[summon-a-spell]]
 === Summon a Spell
@@ -132,38 +117,10 @@ for further details.
 [[uninstalling]]
 === Uninstalling
 
-*conjure-up* uses Juju under the hood and to remove a deployment
-requires the use of `juju help commands`.
-
-****
-NOTE: You'll need to be familiar with Juju
-https://jujucharms.com/docs/devel/controllers[controllers] and
-https://jujucharms.com/docs/devel/models[models]
-****
-
-The basics of removing a deployed spell are as follows:
-
 [source,bash]
-....
-# Deploy openstack
-$ conjure-up openstack
-
-# List Juju information
-$ juju controllers
-CONTROLLER  MODEL    USER         CLOUD/REGION
-teddy*      default  admin@local  localhost/localhost
-
-$ juju models
-MODEL       OWNER        STATUS     LAST CONNECTION
-controller  admin@local  available  never connected
-default*    admin@local  available  just now
-
-# Remove the default model is houses our OpenStack deployment
-$ juju destroy-model default
-
-# Or destroy the entire environment and start over
-$ juju kill-controller teddy
-....
+----
+$ conjure-down
+----
 
 include::walkthrough.adoc[]
 include::usage.adoc[]
