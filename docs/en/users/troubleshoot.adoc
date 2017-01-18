@@ -50,6 +50,46 @@ LC_ALL=
 
 == Common Spell Problems
 
+=== LXD
+
+==== Failed deployments if IPv6 is enabled
+
+Currently conjure-up does not support the use of IPv6. If you are running LXD
+and have a bridge that has IPv6 enabled conjure-up will fail and give you an
+explanation as to why and information for disabling IPv6.
+
+===== Disable IPv6 on LXD versions 2.2 and below
+
+LXD version 2.0 is the default version on Ubuntu Xenial 16.04. To disable IPv6
+you'll need to edit **/etc/default/lxd-bridge** and make sure the following
+values are reflected below:
+
+[source,ini]
+----
+# IPv6
+## IPv6 address (e.g. 2001:470:b368:4242::1)
+LXD_IPV6_ADDR=""
+
+## IPv6 CIDR mask (e.g. 64)
+LXD_IPV6_MASK=""
+
+## IPv6 network (e.g. 2001:470:b368:4242::/64)
+LXD_IPV6_NETWORK=""
+
+## NAT IPv6 traffic
+LXD_IPV6_NAT="false"
+----
+
+===== Disable IPv6 on LXD versions 2.4 and above
+
+To disable IPv6 on your LXD bridge (**lxdbr0** by default) run the following:
+
+[source,bash]
+----
+lxc network set lxdbr0 ipv6.nat false
+lxc network set lxdbr0 ipv6.address none
+----
+
 === OpenStack Base for MAAS
 
 ==== config-changed error for neutron-gateway
