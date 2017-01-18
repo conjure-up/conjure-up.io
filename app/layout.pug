@@ -47,7 +47,10 @@ html
             .col-xs-12.col-md-12.col-lg-12
               .install-box
                 pre.install-code
-                  | $ sudo snap install conjure-up --classic
+                  | $ sudo apt-add-repository ppa:juju/stable
+                  | $ sudo apt-add-repository ppa:conjure-up/next
+                  | $ sudo apt update
+                  | $ sudo apt install conjure-up
                   | $ conjure-up
 
     block content
