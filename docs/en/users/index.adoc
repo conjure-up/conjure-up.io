@@ -1,5 +1,5 @@
 = conjure-up User Manual
-Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mmcc[@mikemccracken]>
+Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mikemccracken[@mikemccracken]>
 :toc: left
 :toclevels: 4
 :revnumber: 2.1.0
@@ -59,9 +59,9 @@ that device is 100G.
 [[configure-lxdzfs]]
 === Configure LXD/ZFS
 
-If you plan on using the *localhost* provider a properly configured
-network bridge is required and optionally(**but highly recommended**)
-configuring ZFS. Skip if you plan on using any other public cloud.
+If you plan on using the *localhost* provider a properly configured network
+bridge is required and optionally configuring ZFS. Skip if you plan on using any
+other public cloud.
 
 [source,bash]
 ----
@@ -88,11 +88,7 @@ with IPv6 as that is currently not supported.
 
 [source,bash]
 ----
-$ sudo apt-add-repository ppa:juju/stable
-$ sudo apt-add-repository ppa:conjure-up/next
-$ sudo apt update
-$ sudo apt install conjure-up
-$ conjure-up
+$ sudo snap install conjure-up --classic
 ----
 
 
@@ -121,9 +117,18 @@ for further details.
 [[uninstalling]]
 === Uninstalling
 
+To remove deployments:
+
 [source,bash]
 ----
 $ conjure-down
+----
+
+To uninstall **conjure-up** itself:
+
+[source,bash]
+----
+$ sudo snap remove conjure-up
 ----
 
 include::walkthrough.adoc[]
