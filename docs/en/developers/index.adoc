@@ -3,7 +3,7 @@ Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <ht
 :toc: left
 :toclevels: 4
 :revnumber: 2.1.0
-:revdate: 2017-01-17
+:revdate: 2017-01-27
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
