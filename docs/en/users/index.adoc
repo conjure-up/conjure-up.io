@@ -66,7 +66,10 @@ conjure-up is available on both Ubuntu Trusty 14.04 LTS and Ubuntu Xenial 16.04 
 $ sudo snap install conjure-up --classic --beta
 ----
 
-NOTE: Trusty users will need to perform some additional steps prior to getting the snappy version installed.
+[[install-trusty-caveat]]
+==== Ubuntu Trusty 14.04
+
+Trusty users will need to perform some additional steps prior to getting the snappy version installed.
 
 To get a working conjure-up install on Trusty the following needs to be run:
 
