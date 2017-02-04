@@ -56,39 +56,26 @@ For *localhost* deployments the following setup is recommended:
 * 250G SSD with a seperate block device for ZFS. Our recommendation for
 that device is 100G.
 
-[[configure-lxdzfs]]
-=== Configure LXD/ZFS
-
-If you plan on using the *localhost* provider a properly configured network
-bridge is required and optionally configuring ZFS. Skip if you plan on using any
-other public cloud.
-
-[source,bash]
-----
-$ sudo lxd init
-----
-
-LXD will go through a series of questions including the setup of ZFS and
-a network bridge. Make sure to utilize your seperate block device for
-the ZFS pool here.
-
-NOTE: There may be times where conjure-up will error out due to
-not finding a suitable **lxdbr0** bridge device. Since LXD is socket
-activated you may need to run **lxc finger** and re-try conjure-up
-installation.
-
-TIP: For best results make sure to allocate at least a 100G ZFS
-pool size.
-
-TIP: If the installation fails please check that LXD is not enabled
-with IPv6 as that is currently not supported.
-
 [[installing-conjure-up]]
 === Installing conjure-up
 
+conjure-up is available on both Ubuntu Trusty 14.04 LTS and Ubuntu Xenial 16.04 LTS
+
 [source,bash]
 ----
-$ sudo snap install conjure-up --classic
+$ sudo snap install conjure-up --classic --beta
+----
+
+NOTE: Trusty users will need to perform some additional steps prior to getting the snappy version installed.
+
+To get a working conjure-up install on Trusty the following needs to be run:
+
+[source,bash]
+----
+$ sudo apt-get install snapd
+$ sudo groupadd lxd && sudo usermod -a -G lxd $USER
+$ sudo reboot
+$ sudo snap install conjure-up --classic --beta
 ----
 
 
