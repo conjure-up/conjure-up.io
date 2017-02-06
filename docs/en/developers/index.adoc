@@ -3,7 +3,6 @@ Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <ht
 :toc: left
 :toclevels: 4
 :revnumber: 2.1.0
-:revdate: 2017-01-27
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
@@ -154,41 +153,19 @@ success("Successful pre-deploy.") <4>
 Before we can process any additional steps we need to wait for all the deployed applications to become in a **ready** state. Below demonstrates a couple of ways to check for an error of the unit or machine:
 
 .An example of 00_deploy-done for OpenStack with NovaLXD
-[source,python]
+[source,bash]
 ----
-#!/usr/bin/env python3
-from conjureup.hooklib.writer import success, fail, error, log
-from conjureup.hooklib import juju
+#!/bin/bash
 
-log.debug("Running deploy-done for OpenStack installation.")
-agent_states = juju.agent_states() <1>
+juju wait -m $JUJU_CONTROLLER:$JUJU_MODEL <1>
 
-errored_units = [(unit_name, message) for unit_name, state, message
-                 in agent_states if state == "error"] <2>
-if len(errored_units) > 0:
-    errs = "\n".join(["{}: {}".format(n, m) for n, m in errored_units])
-    error('Deployment errors:\n{}'.format(errs))
+printf '{"message": "Applications Ready", "returnCode": 0, "isComplete": "true"}' <2>
+exit 0 <3>
 
-machines = juju.machine_states()
-errored_machines = [(name, err) for name, status, err in machines
-                    if status == "error"] <3>
-if len(errored_machines) > 0:
-    errs = "\n".join(["{}: {}".format(n, m) for n, m in errored_machines])
-    error("Machine creation errors:\n{}".format(errs))
-
-if len(agent_states) == 0:
-    fail('Applications are still deploying') <4>
-
-if all([state == 'active' for _, state, _ in agent_states]):
-    success('Applications are ready') <5>
-
-fail('Applications not ready yet')
 ----
-<1> Part of the conjure-up hooklib for grabbing the status output from Juju. This is similar to running `juju status --format yaml`
-<2> Check for any Application units that have errored and trigger a failure in conjure-up to be seen by the user.
-<3> Check for any Machines that have errored and trigger a failure in conjure-up to be seen by the user.
-<4> This triggers a non fatal failure which lets conjure-up know that at least 1 or more applications are still pending.
-<5> All applications, units, and machines are in a successful state and which triggers conjure-up to move on to the <<post-processing-steps>>
+<1> **juju wait** is included with conjure-up and allows us to easily determine when all applications are in a ready state.
+<2> All scripts must end with JSON output describing the result, in this case the Applications are in a ready state.
+<3> conjure-up will process the **returnCode** from the previous step so always `exit 0` here.
 
 [[post-processing-steps]]
 ==== Post processing
@@ -244,7 +221,7 @@ additional-input:
 #!/bin/bash
 
 # Path to executing script
-SCRIPT=$(realpath $0)
+SCRIPT=$(readlink -e $0)
 
 # Directory housing script
 SCRIPTPATH=$(dirname $SCRIPT)
