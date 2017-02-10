@@ -78,6 +78,23 @@ NOTE: Keep in mind you'll need to have credentials defined, see
 https://jujucharms.com/docs/stable/credentials[Juju credentials] for more
 details.
 
+[[customize-deployment-names]]
+==== Customizing deployment phases
+
+In some cases where multiple deployments are used for a single cloud you may
+want to define those deployments to reflect deployment phases, for example, a
+test-deploy, stage-deploy, and production-deploy.
+
+To accomplish this there is a third argument that can be passed to
+**conjure-up** to define those phases:
+
+[source,bash]
+----
+$ conjure-up canonical-kubernetes aws test-deploy
+$ conjure-up canonical-kubernetes aws stage-deploy
+$ conjure-up canonical-kubernetes aws production-deploy
+----
+
 [[customize-headless-mode]]
 ==== Customizing headless mode
 
