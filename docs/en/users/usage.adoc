@@ -81,18 +81,22 @@ details.
 [[customize-deployment-names]]
 ==== Customizing deployment phases
 
-In some cases where multiple deployments are used for a single cloud you may
-want to define those deployments to reflect deployment phases, for example, a
-test-deploy, stage-deploy, and production-deploy.
+Currently, if no controller or model is defined during a headless install they
+will be auto-generated based on the spell and cloud chosen.
 
-To accomplish this there is a third argument that can be passed to
-**conjure-up** to define those phases:
+However, those controllers and models can be defined to better reflect your
+deployment preferences. For example, you have a controller sitting in a data
+center named **east-region** and it houses 3 deployments named test-deploy,
+stage-deploy, and production-deploy.
+
+To accomplish a naming strategy to reflect this design you can pass in a third
+and fourth argument to **conjure-up** to define those phases:
 
 [source,bash]
 ----
-$ conjure-up canonical-kubernetes aws test-deploy
-$ conjure-up canonical-kubernetes aws stage-deploy
-$ conjure-up canonical-kubernetes aws production-deploy
+$ conjure-up canonical-kubernetes aws east-region test-deploy
+$ conjure-up canonical-kubernetes aws east-region stage-deploy
+$ conjure-up canonical-kubernetes aws east-region production-deploy
 ----
 
 [[customize-headless-mode]]
