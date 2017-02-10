@@ -86,17 +86,17 @@ will be auto-generated based on the spell and cloud chosen.
 
 However, those controllers and models can be defined to better reflect your
 deployment preferences. For example, you have a controller sitting in a data
-center named **east-region** and it houses 3 deployments named test-deploy,
-stage-deploy, and production-deploy.
+center named **dc1** and it houses 3 deployments named **test-deploy,
+stage-deploy, and production-deploy**.
 
 To accomplish a naming strategy to reflect this design you can pass in a third
 and fourth argument to **conjure-up** to define those phases:
 
 [source,bash]
 ----
-$ conjure-up canonical-kubernetes aws east-region test-deploy
-$ conjure-up canonical-kubernetes aws east-region stage-deploy
-$ conjure-up canonical-kubernetes aws east-region production-deploy
+$ conjure-up canonical-kubernetes aws dc1 test-deploy
+$ conjure-up canonical-kubernetes aws dc1 stage-deploy
+$ conjure-up canonical-kubernetes aws dc1 production-deploy
 ----
 
 [[customize-headless-mode]]

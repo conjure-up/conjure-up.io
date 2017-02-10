@@ -10,12 +10,7 @@
 $ journalctl |grep conjure-up
 ----
 
-You can also increase the logging by enabling the **debug** flag:
-
-[source,bash]
-----
-$ conjure-up -d
-----
+NOTE: There is also a log file that is written to **$HOME/.cache/conjure-up/conjure-up.log**
 
 === Unicode
 
