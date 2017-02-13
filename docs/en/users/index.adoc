@@ -62,7 +62,7 @@ conjure-up is available on both Ubuntu Trusty 14.04 LTS and Ubuntu Xenial 16.04 
 
 [source,bash]
 ----
-$ sudo snap install conjure-up --classic --beta
+$ sudo snap install conjure-up --classic
 ----
 
 NOTE: If above command fails you'll want to make sure **snapd** is installed with `apt-get install snapd`
@@ -79,7 +79,7 @@ To get a working conjure-up install on Trusty the following needs to be run:
 $ sudo apt-get install snapd
 $ sudo groupadd lxd && sudo usermod -a -G lxd $USER
 $ sudo reboot
-$ sudo snap install conjure-up --classic --beta
+$ sudo snap install conjure-up --classic
 ----
 
 
