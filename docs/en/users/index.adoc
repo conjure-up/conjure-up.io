@@ -82,6 +82,27 @@ $ sudo reboot
 $ sudo snap install conjure-up --classic
 ----
 
+[[bleeding-edge]]
+==== Betas, Development Versions
+
+You can always test out the latest and greatest (though not necessarily stable) with:
+
+[source,bash]
+----
+$ sudo snap install conjure-up --classic --edge
+# Or
+$ sudo snap install conjure-up --classic --beta
+----
+
+If you have **conjure-up** already installed simply run:
+
+[source,bash]
+----
+$ sudo snap refresh conjure-up --classic --edge
+# Or
+$ sudo snap refresh conjure-up --classic --beta
+----
+
 
 [[summon-a-spell]]
 === Summon a Spell
