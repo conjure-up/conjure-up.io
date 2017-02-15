@@ -103,9 +103,31 @@ $ sudo snap refresh conjure-up --classic --edge
 $ sudo snap refresh conjure-up --classic --beta
 ----
 
+[[backup-existing-containers]]
+==== Backup existing Containers
+
+NOTE: This is for users who have been using LXD independently of conjure-up.
+
+**conjure-up** needs to upgrade the underlying container subsystem in order to
+provide a smooth out of the box experience. This could potentionally interfere
+with existing running LXD containers (if you don't know what LXD containers are
+you can safely skip this section). If you have any existing running containers
+you'll want to make sure you back those up first:
+
+[source,bash]
+----
+$ lxc image export <container-name> .
+----
+
+This will export a container tarball in the current directory that you can later
+import into LXD. More information on LXD image management can be
+https://stgraber.org/2016/03/30/lxd-2-0-image-management-512/[found here].
+
 
 [[summon-a-spell]]
 === Summon a Spell
+
+WARNING: Please <<backup-existing-containers>> prior to running **conjure-up**.
 
 To deploy solutions such as OpenStack you will summon a spell:
 
