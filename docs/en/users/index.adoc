@@ -103,31 +103,57 @@ $ sudo snap refresh conjure-up --classic --edge
 $ sudo snap refresh conjure-up --classic --beta
 ----
 
-[[backup-existing-containers]]
-==== Backup existing Containers
+[[a-note-for-lxd-users]]
+==== Users of LXD
 
-NOTE: This is for users who have been using LXD independently of conjure-up.
+**conjure-up** currently only supports running a single installation of LXD.
+Meaning, systems with LXD pre-installed like Ubuntu Xenial Server should not
+have the snapped version of LXD installed.
 
-**conjure-up** needs to upgrade the underlying container subsystem in order to
-provide a smooth out of the box experience. This could potentionally interfere
-with existing running LXD containers (if you don't know what LXD containers are
-you can safely skip this section). If you have any existing running containers
-you'll want to make sure you back those up first:
+NOTE: If you've never done anything with https://snapcraft.io/[snappy] before
+feel free to skip this section.
+
+You can opt to use either or as **conjure-up** will support LXD versions 2.0.8
+and above. To verify that you do only have a single installation of LXD do the
+following:
+
+Check `snap list` output does not have **lxd** listed:
 
 [source,bash]
 ----
-$ lxc image export <container-name> .
+$ snap list
+
+Name  Version  Rev  Developer  Notes
+core  16.04.1  888  canonical  -
 ----
 
-This will export a container tarball in the current directory that you can later
-import into LXD. More information on LXD image management can be
-https://stgraber.org/2016/03/30/lxd-2-0-image-management-512/[found here].
+If **lxd** is listed in the above output, make sure you do not have the Debian package installed:
+
+[source,bash]
+----
+$ dpkg -l lxd
+dpkg-query: no packages found matching lxd
+----
+
+In order to fix this problem you'll want to remove one of those:
+
+For the snap version:
+
+[source,bash]
+----
+$ sudo snap remove lxd
+----
+
+For the Debian package:
+[source,bash]
+----
+$ sudo apt-get remove lxd lxd-client
+$ sudo apt-get purge lxd
+----
 
 
 [[summon-a-spell]]
 === Summon a Spell
-
-WARNING: Please <<backup-existing-containers>> prior to running **conjure-up**.
 
 To deploy solutions such as OpenStack you will summon a spell:
 
