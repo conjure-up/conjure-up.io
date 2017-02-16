@@ -1,5 +1,5 @@
-[[troubleshoot]]
-== Troubleshoot
+[[advanced-usage]]
+== Advanced Usage/Additional Tips
 
 [[running-conjure-up-remotely]]
 === Running conjure-up remotely
@@ -38,6 +38,10 @@ Assuming the **openstack-dashboard** was deployed to a machine whose ip is
 ----
 $ xdg-open https://10.0.8.15/horizon
 ----
+
+
+[[troubleshoot]]
+== Troubleshoot
 
 === Logging
 
