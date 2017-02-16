@@ -34,7 +34,7 @@ and access the horizon dashboard as if it was running on your local machine.
 Assuming the **openstack-dashboard** was deployed to a machine whose ip is
 **10.0.8.15**, you could run:
 
-[bash.source]
+[source,bash]
 ----
 $ xdg-open https://10.0.8.15/horizon
 ----
