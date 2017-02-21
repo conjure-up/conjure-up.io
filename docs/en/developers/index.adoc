@@ -95,57 +95,32 @@ LXD container profile to allow for certain kernel modules and networking to be
 enabled. This needs to happen prior to any applications being deployed in the container.
 
 .An example of 00_pre-deploy for OpenStack with NovaLXD
-[source, python]
+[source,bash]
 ----
-#!/usr/bin/env python3
+#!/bin/bash
 
-import os
-import time
-from subprocess import run, PIPE, CalledProcessError
-from conjureup.hooklib.writer import success, error, log
+set -eu
 
-SCRIPTPATH = os.path.dirname(os.path.abspath(__file__))
+# Path to executing script
+SCRIPT=$(readlink -e $0)
 
+# Directory housing script
+SCRIPTPATH=$(dirname $SCRIPT)
 
-provider_type = os.environ.get('JUJU_PROVIDERTYPE', None) <1>
+. $CONJURE_UP_SPELLSDIR/sdk/common.sh <1>
 
-if provider_type == "lxd": <2>
-    log.debug("Running pre-deploy for OpenStack")
-    # Give LXD enough time to learn about the profile
-    time.sleep(5)
-    try:
-        profilename = run('juju switch | cut -d/ -f2',
-                          shell=True,
-                          stdout=PIPE,
-                          stderr=PIPE)
-        profilename = profilename.stdout.decode().strip()
-    except CalledProcessError as e:
-        error(e)
+if [[ "$JUJU_PROVIDERTYPE" == "lxd" ]]; then <2> <3>
+    debug "Running pre-deploy for $CONJURE_UP_SPELL"
+    sed "s/##MODEL##/$JUJU_MODEL/" $SCRIPTPATH/lxd-profile.yaml | lxc profile edit "juju-$JUJU_MODEL" || exposeResult "Failed to set profile" $? "false" <4>
+fi
 
-    log.debug("Processing lxd profile: {}".format(profilename))
-
-    try:
-        profile_edit = run(
-            'sed "s/##MODEL##/{profile}/" '
-            '{scriptpath}/lxd-profile.yaml | '
-            'lxc profile edit "juju-{profile}"'.format(
-                profile=profilename,
-                scriptpath=SCRIPTPATH),
-            shell=True,
-            stdout=PIPE,
-            stderr=PIPE) <3>
-    except CalledProcessError as e:
-        error(e)
-
-    if profile_edit.returncode > 0:
-        error(profile_edit.stderr)
-
-success("Successful pre-deploy.") <4>
+exposeResult "Successful pre-deploy." 0 "true" <5>
 ----
-<1> Is exposed as an environment variable to check the type of public cloud this script is running in.
-<2> Since we are doing this on a container it makes sense to only work with the **LXD** type.
-<3> This performs an inplace update of the LXD profile. Due to the nature of LXD this profile will be available immediately even on containers that have already started.
-<4> Helper function part of the builtin hooklib for writing steps. This lets conjure-up know that this pre-deploy task has completed without error.
+<1> **CONJURE_UP_SPELLSDIR** environment variable is already exposed and is useful if wanting to use the provided spell sdk.
+<2> Is exposed as an environment variable to check the type of public cloud this script is running in.
+<3> Since we are doing this on a container it makes sense to only work with the **LXD** type.
+<4> This performs an inplace update of the LXD profile. Due to the nature of LXD this profile will be available immediately even on containers that have already started.
+<5> Helper function part of the builtin hooklib for writing steps. This lets conjure-up know that this pre-deploy task has completed without error.
 
 [[deploy-done]]
 ==== 00_deploy-done
@@ -156,16 +131,23 @@ Before we can process any additional steps we need to wait for all the deployed 
 [source,bash]
 ----
 #!/bin/bash
+set -eu
+
+# Path to executing script
+SCRIPT=$(readlink -e $0)
+
+# Directory housing script
+SCRIPTPATH=$(dirname $SCRIPT)
+
+. $CONJURE_UP_SPELLSDIR/sdk/common.sh
 
 juju wait -m $JUJU_CONTROLLER:$JUJU_MODEL <1>
 
-printf '{"message": "Applications Ready", "returnCode": 0, "isComplete": "true"}' <2>
-exit 0 <3>
-
+exposeResult "Applications Ready" 0 "true" <2>
 ----
 <1> **juju wait** is included with conjure-up and allows us to easily determine when all applications are in a ready state.
 <2> All scripts must end with JSON output describing the result, in this case the Applications are in a ready state.
-<3> conjure-up will process the **returnCode** from the previous step so always `exit 0` here.
+
 
 [[post-processing-steps]]
 ==== Post processing
