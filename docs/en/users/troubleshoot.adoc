@@ -22,7 +22,7 @@ remote host's ip is **172.16.0.5** so you'll want to do the following
 
 [source.bash]
 ----
-$ sshuttle -r 17.16.0.5 10.0.8.1/24
+$ sshuttle -r 172.16.0.5 10.0.8.1/24
 [local sudo] Password:
 client: Connected.
 ----
