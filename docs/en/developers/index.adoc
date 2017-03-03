@@ -2,7 +2,7 @@
 Adam Stokes <https://github.com/battlemidget[@battlemidget]>; Mike McCracken <https://github.com/mikemccracken[@mikemccracken]>
 :toc: left
 :toclevels: 4
-:revnumber: 2.1.0
+:revnumber: 2.1.1
 :revremark: Stable
 :source-highlighter: pygments
 :icons: font
