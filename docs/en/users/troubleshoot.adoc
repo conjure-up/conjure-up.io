@@ -133,7 +133,15 @@ lxc network set lxdbr0 ipv6.nat false
 lxc network set lxdbr0 ipv6.address none
 ----
 
-=== OpenStack Base for MAAS
+=== OpenStack
+
+==== Deployment gets part way through and seems to hang under VSphere
+
+The most common cause of a "hung" deployment running inside VSphere is network
+related. The most common solution is to enable promiscuous mode in your virtual
+switch, Please see
+https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1004099[the
+VMware KB article] on enabling that feature.
 
 ==== config-changed error for neutron-gateway
 
